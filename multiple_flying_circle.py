@@ -35,12 +35,6 @@ class Circle:
         if self.y - self.radius <= 0 or self.y + self.radius >= SCREEN_HEIGHT:
             return "y_hit"
         return False
-    
-    def collide(self, other_circle):
-        distance = ((self.x - other_circle.x)**2 + (self.y - other_circle.y)**2)**0.5
-        if distance < self.radius + other_circle.radius:
-            return True
-        return False
 
 if __name__ == "__main__":
     running = True
@@ -62,16 +56,6 @@ if __name__ == "__main__":
                 running = False
                 break
             
-        for element in circle_list:
-            for other_element in circle_list:
-                if element!= other_element and element.collide(other_element):
-                    while element.collide(other_element):
-                        element.x -= element.speed_x/abs(element.speed_x)
-                        element.y -= element.speed_y/abs(element.speed_y)
-                    element.speed_x *= -1
-                    element.speed_y *= -1
-                    # other_element.speed_x *= -1
-                    # other_element.speed_y *= -1
         for element in circle_list:
             element.update()
         screen.fill((255,255,255))
